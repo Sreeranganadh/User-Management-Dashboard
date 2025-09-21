@@ -1,3 +1,78 @@
+/* Responsive Styles */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    max-width: 98vw;
+    gap: 10px;
+    padding: 10px;
+  }
+  .user-list {
+    border-right: none;
+    border-bottom: 2px solid #ddd;
+    padding-right: 0;
+    padding-bottom: 20px;
+    max-height: unset;
+  }
+  .user-form {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 4px;
+    border-radius: 0;
+    min-width: 100vw;
+    max-width: 100vw;
+  }
+  .user-card {
+    padding: 10px;
+    font-size: 15px;
+  }
+  .filter-popup {
+    min-width: 90vw;
+    padding: 18px 6vw 12px 6vw;
+  }
+  input, button, select {
+    font-size: 15px;
+    padding: 8px;
+  }
+  h2, h3 {
+    font-size: 1.1em;
+  }
+}
+/* Filter Popup Styles */
+.filter-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.filter-popup {
+  background: #fff;
+  padding: 30px 24px 18px 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  min-width: 320px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
 * {
   margin: 0;
   padding: 0;

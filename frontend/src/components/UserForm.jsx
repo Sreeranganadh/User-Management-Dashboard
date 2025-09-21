@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -8,21 +9,17 @@ const UserForm = ({ editingUser, setEditingUser, onUserSaved }) => {
     fname: "",
     lname: "",
     email: "",
-    mobile: "",
-    address: { city: "", state: "" },
+    department: "",
   });
 
   useEffect(() => {
     if (editingUser) setUser(editingUser);
+    else setUser({ fname: "", lname: "", email: "", department: "" });
   }, [editingUser]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "city" || name === "state") {
-      setUser({ ...user, address: { ...user.address, [name]: value } });
-    } else {
-      setUser({ ...user, [name]: value });
-    }
+    setUser({ ...user, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -33,13 +30,7 @@ const UserForm = ({ editingUser, setEditingUser, onUserSaved }) => {
       } else {
         await axios.post(API_URL, user);
       }
-      setUser({
-        fname: "",
-        lname: "",
-        email: "",
-        mobile: "",
-        address: { city: "", state: "" },
-      });
+      setUser({ fname: "", lname: "", email: "", department: "" });
       setEditingUser(null);
       onUserSaved();
     } catch (error) {
@@ -73,25 +64,11 @@ const UserForm = ({ editingUser, setEditingUser, onUserSaved }) => {
           placeholder="Email"
         />
         <input
-          type="number"
-          name="mobile"
-          value={user.mobile}
-          onChange={handleChange}
-          placeholder="Mobile"
-        />
-        <input
           type="text"
-          name="city"
-          value={user.address.city}
+          name="department"
+          value={user.department}
           onChange={handleChange}
-          placeholder="City"
-        />
-        <input
-          type="text"
-          name="state"
-          value={user.address.state}
-          onChange={handleChange}
-          placeholder="State"
+          placeholder="Department"
         />
         <button type="submit" className="create">
           {editingUser ? "Update" : "Create"} User

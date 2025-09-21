@@ -1,6 +1,5 @@
-import UserItem from "./UserItem";
 
-const API_URL = "http://localhost:3000/users";
+import UserItem from "./UserItem";
 
 const UserList = ({ users, onEdit, onDelete }) => {
   return (

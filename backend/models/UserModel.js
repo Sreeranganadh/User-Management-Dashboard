@@ -14,34 +14,16 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  mobile: {
-    type: Number,
+  department: {
+    type: String,
     required: true,
-  },
-  address: {
-    city: {
-      type: String,
-      required: true,
-    },
-    state: {
-      type: String,
-      required: true,
-    },
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
   },
 });
 
-UserSchema.pre("save", function (next) {
-  this.updatedAt = Date.now();
-  next();
-});
+// UserSchema.pre("save", function (next) {
+//   this.updatedAt = Date.now();
+//   next();
+// });
 
 const User = mongoose.model("User", UserSchema);
 

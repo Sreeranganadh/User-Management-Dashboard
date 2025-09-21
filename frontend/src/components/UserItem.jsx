@@ -1,11 +1,14 @@
+
+
 const UserItem = ({ user, onEdit, onDelete }) => {
   return (
     <div className="user-card">
-      <h3>{user.name}</h3>
+      <h3>
+        {user.fname} {user.lname}
+      </h3>
+      <p>ID: {user._id}</p>
       <p>Email: {user.email}</p>
-      <p>
-        Location: {user.address.city}, {user.address.state}
-      </p>
+      <p>Department: {user.department}</p>
       <button className="edit" onClick={() => onEdit(user)}>
         Edit
       </button>
@@ -15,5 +18,6 @@ const UserItem = ({ user, onEdit, onDelete }) => {
     </div>
   );
 };
+
 
 export default UserItem;
