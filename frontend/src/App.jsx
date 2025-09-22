@@ -6,7 +6,9 @@ import FilterPopup from "./components/FilterPopup";
 import "./App.css";
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/users";
+// const API_URL = "http://localhost:3000/users";
+
+const API_URL = "https://usermanagementdashboard-backend.onrender.com/users"
 
 
 const App = () => {
@@ -81,13 +83,13 @@ const App = () => {
 
   return (
     <div className="container">
-      <div style={{ position: "absolute", top: 20, right: 40, display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div className="top-bar">
         <input
           type="text"
           placeholder="Search users..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          style={{ padding: '7px 12px', borderRadius: 5, border: '1px solid #ccc', fontSize: 16, minWidth: 180 }}
+          style={{ padding: '7px 12px', borderRadius: 5, border: '1px solid #ccc', fontSize: 16, minWidth: 120, flex: 1 }}
         />
         <select value={sortField} onChange={e => setSortField(e.target.value)} style={{ padding: '7px 8px', borderRadius: 5, border: '1px solid #ccc', fontSize: 16 }}>
           <option value="fname">First Name</option>

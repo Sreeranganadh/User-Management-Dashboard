@@ -1,8 +1,100 @@
 
+// import { useState, useEffect } from "react";
+// import axios from "axios";
+
+// // const API_URL = "http://localhost:3000/users";
+
+// const API_URL = "https://usermanagementdashboard-backend.onrender.com/users"
+
+// const UserForm = ({ editingUser, setEditingUser, onUserSaved }) => {
+//   const [user, setUser] = useState({
+//     fname: "",
+//     lname: "",
+//     email: "",
+//     department: "",
+//   });
+
+//   useEffect(() => {
+//     if (editingUser) setUser(editingUser);
+//     else setUser({ fname: "", lname: "", email: "", department: "" });
+//   }, [editingUser]);
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setUser({ ...user, [name]: value });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       if (editingUser) {
+//         await axios.put(`${API_URL}/${editingUser._id}`, user);
+//       } else {
+//         await axios.post(API_URL, user);
+//       }
+//       setUser({ fname: "", lname: "", email: "", department: "" });
+//       setEditingUser(null);
+//       onUserSaved();
+//     } catch (error) {
+//       console.error("Error saving user:", error);
+//     }
+//   };
+
+//   return (
+//     <div className="user-form">
+//       <h2>{editingUser ? "Edit User" : "Create User"}</h2>
+//       <form onSubmit={handleSubmit}>
+//         <input
+//           type="text"
+//           name="fname"
+//           value={user.fname}
+//           onChange={handleChange}
+//           placeholder="FirstName"
+//         />
+//         <input
+//           type="text"
+//           name="lname"
+//           value={user.lname}
+//           onChange={handleChange}
+//           placeholder="LastName"
+//         />
+//         <input
+//           type="email"
+//           name="email"
+//           value={user.email}
+//           onChange={handleChange}
+//           placeholder="Email"
+//         />
+//         <input
+//           type="text"
+//           name="department"
+//           value={user.department}
+//           onChange={handleChange}
+//           placeholder="Department"
+//         />
+//         <button type="submit" className="create">
+//           {editingUser ? "Update" : "Create"} User
+//         </button>
+//         <button
+//           type="button"
+//           className="clear"
+//           onClick={() => setEditingUser(null)}
+//         >
+//           Clear
+//         </button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default UserForm;
+
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";   //  import PropTypes
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/users";
+// const API_URL = "http://localhost:3000/users";
+const API_URL = "https://usermanagementdashboard-backend.onrender.com/users";
 
 const UserForm = ({ editingUser, setEditingUser, onUserSaved }) => {
   const [user, setUser] = useState({
@@ -13,8 +105,11 @@ const UserForm = ({ editingUser, setEditingUser, onUserSaved }) => {
   });
 
   useEffect(() => {
-    if (editingUser) setUser(editingUser);
-    else setUser({ fname: "", lname: "", email: "", department: "" });
+    if (editingUser) {
+      setUser(editingUser);
+    } else {
+      setUser({ fname: "", lname: "", email: "", department: "" });
+    }
   }, [editingUser]);
 
   const handleChange = (e) => {
@@ -47,14 +142,16 @@ const UserForm = ({ editingUser, setEditingUser, onUserSaved }) => {
           name="fname"
           value={user.fname}
           onChange={handleChange}
-          placeholder="FirstName"
+          placeholder="First Name"
+          required
         />
         <input
           type="text"
           name="lname"
           value={user.lname}
           onChange={handleChange}
-          placeholder="LastName"
+          placeholder="Last Name"
+          required
         />
         <input
           type="email"
@@ -62,6 +159,7 @@ const UserForm = ({ editingUser, setEditingUser, onUserSaved }) => {
           value={user.email}
           onChange={handleChange}
           placeholder="Email"
+          required
         />
         <input
           type="text"
@@ -69,6 +167,7 @@ const UserForm = ({ editingUser, setEditingUser, onUserSaved }) => {
           value={user.department}
           onChange={handleChange}
           placeholder="Department"
+          required
         />
         <button type="submit" className="create">
           {editingUser ? "Update" : "Create"} User
@@ -85,4 +184,18 @@ const UserForm = ({ editingUser, setEditingUser, onUserSaved }) => {
   );
 };
 
+//  PropTypes validation
+UserForm.propTypes = {
+  editingUser: PropTypes.shape({
+    _id: PropTypes.string,
+    fname: PropTypes.string,
+    lname: PropTypes.string,
+    email: PropTypes.string,
+    department: PropTypes.string,
+  }),
+  setEditingUser: PropTypes.func.isRequired,
+  onUserSaved: PropTypes.func.isRequired,
+};
+
 export default UserForm;
+
